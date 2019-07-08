@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+      <title>Together | Chat room</title>
+      <link rel="stylesheet" th:href="@{/css/main.css}" />
+      <link rel="stylesheet" th:href="@{/assets/bootstrap-4.3.1/css/bootstrap.min.css}" />
+  </head>
+  <body>
+    <noscript>
+      <h2>Sorry! Your browser doesn't support Javascript</h2>
+    </noscript>
+
+    <div id="chat-page" align="center">
+        <div class="chat-page-header">
+            <div align="right">
+                <a th:href="@{/}" class="search-a">Back to chat</a>
+                <a th:href="@{/logout}" class="logout-a">Logout</a>
+            </div>
+            <h1>Welcome <span id="username" th:utext="${username}"></span></h1>
+            <input type="hidden" th:value="${user_id}" id="user_id">
+        </div>
+
+        <div class="chat-page-body row">
+            <div class="userlist-container col-md-4">
+                <div class="userlist-header">
+                    <h2>Restriction</h2>
+                </div>
+                <div class="search-box">
+                    <div class="search-form">
+                        <div class="form-group">
+                            <label>Select Search Type</label>
+                            <select class="form-control" id="sel-searchtype">
+                                <option value="0">Search for text in messages</option>
+                                <option value="1">Search for messages by user name</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <input type="text" class="form-control" id="txt-searchcontent">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" id="search-button">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-container col-md-8">
+                <div class="chat-header">
+                    <h2>Search Result</h2>
+                </div>
+                <div class="connecting">
+                    Connecting...
+                </div>
+                <ul id="messageArea">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="contextPath" th:value="${contextPath}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script th:src="@{/assets/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/js/search.js}"></script>
+  </body>
+</html>
